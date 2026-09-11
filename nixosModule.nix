@@ -98,8 +98,7 @@ in
           environment = {
             TTY_DEVICE = "${cfg.device.vendorId}:${cfg.device.productId}";
             TTY_BAUD_RATE = "${toString cfg.device.baudRate}";
-          }
-          // cfg.extraEnvironment;
+          };
         };
     };
   };
