@@ -64,7 +64,7 @@ in
     users.groups.${user} = { };
 
     services.udev.extraRules = ''
-      SUBSYSTEM=="tty", ATTRS{idVendor}=="${cfg.device.vendorId}", ATTRS{idProduct}=="${cfg.device.productId}", MODE="0666", GROUP="${user}"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="${cfg.device.vendorId}", ATTRS{idProduct}=="${cfg.device.productId}", MODE="0666"
     '';
     systemd.services = {
       ivhs-companion =
