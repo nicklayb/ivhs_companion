@@ -1,0 +1,9 @@
+%{
+  "box": {:git, "https://github.com/nicklayb/box_ex.git", "4ea0ad142be0d0c68cc764bef5d814a6420126bc", [tag: "0.19.0"]},
+  "circuits_uart": {:hex, :circuits_uart, "1.6.0", "259e8126b4004648e1bba6da5827b9e473b7e09e1eb4357f0026a1d9f274fce2", [:mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "9f0bdf612706b16beb2026a9e316cc313b919c35b663c1177d374b1f7330b790"},
+  "deps_nix": {:hex, :deps_nix, "2.5.0", "4dd784dd177b997077f9a7dda7d4e9719b94f9f9984184b9c6ddea6ba9e8308c", [:mix], [{:ex_nar, "~> 0.3.0", [hex: :ex_nar, repo: "hexpm", optional: false]}, {:mint, "~> 1.0", [hex: :mint, repo: "hexpm", optional: false]}], "hexpm", "b087753d7548447fa08b4752fcc13ff2aaaac08bdff0347b4dfae924d17428da"},
+  "elixir_make": {:hex, :elixir_make, "0.10.0", "16577e2583a79bb79237bbff349619ef5d80afffc07eac6e4faf0d00e2ddaf7d", [:mix], [], "hexpm", "dc1f09fb7fa68866b886abd5f0f3c83553b1a19a52359a899e92af1bb3b31982"},
+  "ex_nar": {:hex, :ex_nar, "0.3.0", "3136d019241afc97a5da8e43613a56ac0ae30dad12df5d3bc66547e55e7453e0", [:mix], [], "hexpm", "cbb42d047764feac6c411efddcadc31866e9a998dd6e2bc1eb428cec1c49fdcd"},
+  "hpax": {:hex, :hpax, "1.0.4", "777de5d433b0fbdc7c418159c8055910faa8047ffdb3d6b31098d2a46cd7685c", [:mix], [], "hexpm", "afc7cb142ebcc2d01ce7816190b98ce5dd49e799111b24249f3443d730f377ca"},
+  "mint": {:hex, :mint, "1.10.0", "85af3353bfc504f5bdfe494bd92b8490f87a306dc659ee1ad0af435107e898dc", [:mix], [{:castore, "~> 0.1.0 or ~> 1.0", [hex: :castore, repo: "hexpm", optional: true]}, {:hpax, "~> 0.1.1 or ~> 0.2.0 or ~> 1.0", [hex: :hpax, repo: "hexpm", optional: false]}], "hexpm", "8b16fb72aaa7531d206a1f05e4cc85509ba531ccec7a17a22736c9c95cbb24d1"},
+}
