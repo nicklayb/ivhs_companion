@@ -30,7 +30,7 @@ in
     loggerLevel = mkEnumOption [ "info" "debug" ] "Logger level" "info";
     device = {
       vendorId = mkStrOption "Device's vendor id" "";
-      productId = mkStrOption "Device's product id";
+      productId = mkStrOption "Device's product id" "";
       baudRate = mkIntOption "Baud rate of the USB device" 115200;
     };
     mqtt = {
