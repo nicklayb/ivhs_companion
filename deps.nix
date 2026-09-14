@@ -145,6 +145,70 @@ let
     with self;
     {
 
+      argon2_elixir =
+        let
+          version = "4.1.3";
+          drv = buildMix {
+            inherit version;
+            name = "argon2_elixir";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "argon2_elixir";
+              sha256 = "7c295b8d8e0eaf6f43641698f962526cdf87c6feb7d14bd21e599271b510608c";
+            };
+
+            beamDeps = [
+              comeonin
+              elixir_make
+            ];
+          };
+        in
+        drv;
+
+      attrs =
+        let
+          version = "0.6.0";
+          drv = buildMix {
+            inherit version;
+            name = "attrs";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "attrs";
+              sha256 = "9c30ac15255c2ba8399263db55ba32c2f4e5ec267b654ce23df99168b405c82e";
+            };
+          };
+        in
+        drv;
+
+      bandit =
+        let
+          version = "1.10.4";
+          drv = buildMix {
+            inherit version;
+            name = "bandit";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "bandit";
+              sha256 = "a5faf501042ac1f31d736d9d4a813b3db4ef812e634583b6a457b0928798a51d";
+            };
+
+            beamDeps = [
+              hpax
+              plug
+              telemetry
+              thousand_island
+              websock
+            ];
+          };
+        in
+        drv;
+
       box =
         let
           version = "4ea0ad142be0d0c68cc764bef5d814a6420126bc";
@@ -159,6 +223,15 @@ let
               rev = "4ea0ad142be0d0c68cc764bef5d814a6420126bc";
               hash = "sha256-8NuZ1uoJzfLuUcPsl5BxJORVsGb+H2EfJDgxafLLm64=";
             };
+
+            beamDeps = [
+              ecto
+              phoenix_pubsub
+              phoenix_html
+              gettext
+              phoenix_live_view
+              req
+            ];
           };
         in
         drv;
@@ -180,6 +253,61 @@ let
             beamDeps = [
               elixir_make
             ];
+          };
+        in
+        drv;
+
+      comeonin =
+        let
+          version = "5.5.1";
+          drv = buildMix {
+            inherit version;
+            name = "comeonin";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "comeonin";
+              sha256 = "65aac8f19938145377cee73973f192c5645873dcf550a8a6b18187d17c13ccdb";
+            };
+          };
+        in
+        drv;
+
+      db_connection =
+        let
+          version = "2.10.2";
+          drv = buildMix {
+            inherit version;
+            name = "db_connection";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "db_connection";
+              sha256 = "510b14482330f1af6490a2fa0efd8d4f1435d1529b165647df22ac0f2df0fa93";
+            };
+
+            beamDeps = [
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      decimal =
+        let
+          version = "3.1.1";
+          drv = buildMix {
+            inherit version;
+            name = "decimal";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "decimal";
+              sha256 = "c5f25f2ced74a0587d03e6023f595db8e924c9d3922c8c8ffd9edfc4498cf1f6";
+            };
           };
         in
         drv;
@@ -206,6 +334,54 @@ let
         in
         drv;
 
+      ecto =
+        let
+          version = "3.14.2";
+          drv = buildMix {
+            inherit version;
+            name = "ecto";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "ecto";
+              sha256 = "25d60b8c816a07d19d85b80bdf60978bd8b102209dda198d768cd7c6745339a6";
+            };
+
+            beamDeps = [
+              decimal
+              jason
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      ecto_sql =
+        let
+          version = "3.14.0";
+          drv = buildMix {
+            inherit version;
+            name = "ecto_sql";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "ecto_sql";
+              sha256 = "f4d8d36faf294c9417b5a37ec7ac8217ee2abdef5fcf197ba690f361548d3949";
+            };
+
+            beamDeps = [
+              db_connection
+              decimal
+              ecto
+              postgrex
+              telemetry
+            ];
+          };
+        in
+        drv;
+
       elixir_make =
         let
           version = "0.10.0";
@@ -219,6 +395,27 @@ let
               pkg = "elixir_make";
               sha256 = "dc1f09fb7fa68866b886abd5f0f3c83553b1a19a52359a899e92af1bb3b31982";
             };
+          };
+        in
+        drv;
+
+      esbuild =
+        let
+          version = "0.10.0";
+          drv = buildMix {
+            inherit version;
+            name = "esbuild";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "esbuild";
+              sha256 = "468489cda427b974a7cc9f03ace55368a83e1a7be12fba7e30969af78e5f8c70";
+            };
+
+            beamDeps = [
+              jason
+            ];
           };
         in
         drv;
@@ -240,6 +437,69 @@ let
         in
         drv;
 
+      expo =
+        let
+          version = "1.1.1";
+          drv = buildMix {
+            inherit version;
+            name = "expo";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "expo";
+              sha256 = "5fb308b9cb359ae200b7e23d37c76978673aa1b06e2b3075d814ce12c5811640";
+            };
+          };
+        in
+        drv;
+
+      finch =
+        let
+          version = "0.23.0";
+          drv = buildMix {
+            inherit version;
+            name = "finch";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "finch";
+              sha256 = "80e58d3f936f57e3fdf404f83a3642897ae6d9fb642934e46da4d8fe761b99d5";
+            };
+
+            beamDeps = [
+              mime
+              mint
+              nimble_options
+              nimble_pool
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      gettext =
+        let
+          version = "0.26.2";
+          drv = buildMix {
+            inherit version;
+            name = "gettext";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "gettext";
+              sha256 = "aa978504bcf76511efdc22d580ba08e2279caab1066b76bb9aa81c4a1e0a32a5";
+            };
+
+            beamDeps = [
+              expo
+            ];
+          };
+        in
+        drv;
+
       hpax =
         let
           version = "1.0.4";
@@ -252,6 +512,84 @@ let
               inherit version;
               pkg = "hpax";
               sha256 = "afc7cb142ebcc2d01ce7816190b98ce5dd49e799111b24249f3443d730f377ca";
+            };
+          };
+        in
+        drv;
+
+      ivhs_broker =
+        let
+          version = "4594f1ff8fa4eeb53655e6c9949fa2370aecebf6";
+          drv = buildMix {
+            inherit version;
+            name = "ivhs_broker";
+            appConfigPath = ./config;
+
+            src = pkgs.fetchFromGitHub {
+              owner = "nicklayb";
+              repo = "ivhs_broker";
+              rev = "4594f1ff8fa4eeb53655e6c9949fa2370aecebf6";
+              hash = "sha256-FE4fwMzw9TWkRDLbKw9+qDHf34l/QrNf4wN+q90iFQk=";
+            };
+
+            beamDeps = [
+              argon2_elixir
+              bandit
+              box
+              ecto_sql
+              postgrex
+              esbuild
+              gettext
+              plug
+              jason
+              phoenix
+              phoenix_live_view
+              sweet_xml
+              polymorphic_embed
+              req
+              tailwind
+              tz
+              phoenix_ecto
+              mqttx
+              thousand_island
+            ];
+          };
+        in
+        drv;
+
+      jason =
+        let
+          version = "1.4.5";
+          drv = buildMix {
+            inherit version;
+            name = "jason";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "jason";
+              sha256 = "b0c823996102bcd0239b3c2444eb00409b72f6a140c1950bc8b457d836b30684";
+            };
+
+            beamDeps = [
+              decimal
+            ];
+          };
+        in
+        drv;
+
+      mime =
+        let
+          version = "2.0.7";
+          drv = buildMix {
+            inherit version;
+            name = "mime";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "mime";
+              sha256 = "6171188e399ee16023ffc5b76ce445eb6d9672e2e241d2df6050f3c771e80ccd";
             };
           };
         in
@@ -273,6 +611,441 @@ let
 
             beamDeps = [
               hpax
+            ];
+          };
+        in
+        drv;
+
+      mqttx =
+        let
+          version = "0.11.2";
+          drv = buildMix {
+            inherit version;
+            name = "mqttx";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "mqttx";
+              sha256 = "fdd8b58e0588c0203388fe442b9045e982ae0e8a392401a2505985297216d02b";
+            };
+
+            beamDeps = [
+              bandit
+              telemetry
+              thousand_island
+              websock_adapter
+            ];
+          };
+        in
+        drv;
+
+      nimble_options =
+        let
+          version = "1.1.1";
+          drv = buildMix {
+            inherit version;
+            name = "nimble_options";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "nimble_options";
+              sha256 = "821b2470ca9442c4b6984882fe9bb0389371b8ddec4d45a9504f00a66f650b44";
+            };
+          };
+        in
+        drv;
+
+      nimble_pool =
+        let
+          version = "1.1.0";
+          drv = buildMix {
+            inherit version;
+            name = "nimble_pool";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "nimble_pool";
+              sha256 = "af2e4e6b34197db81f7aad230c1118eac993acc0dae6bc83bac0126d4ae0813a";
+            };
+          };
+        in
+        drv;
+
+      phoenix =
+        let
+          version = "1.8.13";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix";
+              sha256 = "ad14e24d10e5a52d5f80429053bbe3a5d124311a2868fceb0a01a2e859c44539";
+            };
+
+            beamDeps = [
+              bandit
+              jason
+              phoenix_pubsub
+              phoenix_template
+              plug
+              plug_crypto
+              telemetry
+              websock_adapter
+            ];
+          };
+        in
+        drv;
+
+      phoenix_ecto =
+        let
+          version = "4.7.0";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix_ecto";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix_ecto";
+              sha256 = "1d75011e4254cb4ddf823e81823a9629559a1be93b4321a6a5f11a5306fbf4cc";
+            };
+
+            beamDeps = [
+              ecto
+              phoenix_html
+              plug
+              postgrex
+            ];
+          };
+        in
+        drv;
+
+      phoenix_html =
+        let
+          version = "4.3.0";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix_html";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix_html";
+              sha256 = "3eaa290a78bab0f075f791a46a981bbe769d94bc776869f4f3063a14f30497ad";
+            };
+          };
+        in
+        drv;
+
+      phoenix_live_view =
+        let
+          version = "1.1.33";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix_live_view";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix_live_view";
+              sha256 = "2030f7987f641a269634e021bcde9373e5dea993f9373e628a44da86b2330b6c";
+            };
+
+            beamDeps = [
+              jason
+              phoenix
+              phoenix_html
+              phoenix_template
+              plug
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      phoenix_pubsub =
+        let
+          version = "2.3.0";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix_pubsub";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix_pubsub";
+              sha256 = "eec7be6e9cf02e2551d389b558402d6c637cd3973796326e7ba4bb03c6b2e91d";
+            };
+          };
+        in
+        drv;
+
+      phoenix_template =
+        let
+          version = "1.0.4";
+          drv = buildMix {
+            inherit version;
+            name = "phoenix_template";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "phoenix_template";
+              sha256 = "2c0c81f0e5c6753faf5cca2f229c9709919aba34fab866d3bc05060c9c444206";
+            };
+
+            beamDeps = [
+              phoenix_html
+            ];
+          };
+        in
+        drv;
+
+      plug =
+        let
+          version = "1.20.3";
+          drv = buildMix {
+            inherit version;
+            name = "plug";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "plug";
+              sha256 = "be266aee1b8536ef6409d58cf39a3121319f0ec47cfa1b24024485aa0e76ad76";
+            };
+
+            beamDeps = [
+              mime
+              plug_crypto
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      plug_crypto =
+        let
+          version = "2.2.0";
+          drv = buildMix {
+            inherit version;
+            name = "plug_crypto";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "plug_crypto";
+              sha256 = "83a95744ab1c75876542b6fab135fcc176280e0f301a111c1f757fddcec95d2c";
+            };
+          };
+        in
+        drv;
+
+      polymorphic_embed =
+        let
+          version = "5.0.6";
+          drv = buildMix {
+            inherit version;
+            name = "polymorphic_embed";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "polymorphic_embed";
+              sha256 = "99c7a7aed3d4b00bd08ce91c9b880deaa47b649904fca8b745f3a50b9b3b3835";
+            };
+
+            beamDeps = [
+              attrs
+              ecto
+              jason
+              phoenix_html
+              phoenix_live_view
+            ];
+          };
+        in
+        drv;
+
+      postgrex =
+        let
+          version = "0.22.4";
+          drv = buildMix {
+            inherit version;
+            name = "postgrex";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "postgrex";
+              sha256 = "4aae45a2d60e35b04eea2602440be152fae332901f1fc7a60fc7cb7f0f9a9c5a";
+            };
+
+            beamDeps = [
+              db_connection
+              decimal
+              jason
+            ];
+          };
+        in
+        drv;
+
+      req =
+        let
+          version = "0.7.4";
+          drv = buildMix {
+            inherit version;
+            name = "req";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "req";
+              sha256 = "4b192d63253e8dcc6221ef992ea9ebef7d3555166e8423aa5b553e86bc3c69a2";
+            };
+
+            beamDeps = [
+              finch
+              jason
+              mime
+              plug
+            ];
+          };
+        in
+        drv;
+
+      sweet_xml =
+        let
+          version = "0.7.5";
+          drv = buildMix {
+            inherit version;
+            name = "sweet_xml";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "sweet_xml";
+              sha256 = "193b28a9b12891cae351d81a0cead165ffe67df1b73fe5866d10629f4faefb12";
+            };
+          };
+        in
+        drv;
+
+      tailwind =
+        let
+          version = "0.5.1";
+          drv = buildMix {
+            inherit version;
+            name = "tailwind";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "tailwind";
+              sha256 = "c4e26302a59fec72abc5610ecb6ad2116d9aa31f31aab2d4b8eb6e95d25a689c";
+            };
+          };
+        in
+        drv;
+
+      telemetry =
+        let
+          version = "1.4.2";
+          drv = buildRebar3 {
+            inherit version;
+            name = "telemetry";
+
+            src = fetchHex {
+              inherit version;
+              pkg = "telemetry";
+              sha256 = "928f6495066506077862c0d1646609eed891a4326bee3126ba54b60af61febb1";
+            };
+          };
+        in
+        drv;
+
+      thousand_island =
+        let
+          version = "1.5.0";
+          drv = buildMix {
+            inherit version;
+            name = "thousand_island";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "thousand_island";
+              sha256 = "708923d40523e43cf99041ab37a0d4b0ec426ac6438fa3716ab23d919eaeb412";
+            };
+
+            beamDeps = [
+              telemetry
+            ];
+          };
+        in
+        drv;
+
+      tz =
+        let
+          version = "0.28.2";
+          drv = buildMix {
+            inherit version;
+            name = "tz";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "tz";
+              sha256 = "a6bf7355a33f0a7511602ab4566432ac0901d8abff81e94e455bca19708a0c87";
+            };
+
+            beamDeps = [
+              mint
+            ];
+          };
+        in
+        drv;
+
+      websock =
+        let
+          version = "0.5.3";
+          drv = buildMix {
+            inherit version;
+            name = "websock";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "websock";
+              sha256 = "6105453d7fac22c712ad66fab1d45abdf049868f253cf719b625151460b8b453";
+            };
+          };
+        in
+        drv;
+
+      websock_adapter =
+        let
+          version = "0.6.0";
+          drv = buildMix {
+            inherit version;
+            name = "websock_adapter";
+            appConfigPath = ./config;
+
+            src = fetchHex {
+              inherit version;
+              pkg = "websock_adapter";
+              sha256 = "50021a85bce8f203b086705d9e0c5415e2c7eb05d319111b0428fe71f9934617";
+            };
+
+            beamDeps = [
+              bandit
+              plug
+              websock
             ];
           };
         in

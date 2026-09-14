@@ -3,6 +3,8 @@ defmodule Companion.Uart.Handler do
 
   require Logger
 
+  alias Companion.Mqtt.Client, as: MqttClient
+
   def start_link(args) do
     GenServer.start_link(__MODULE__, args)
   end
@@ -29,8 +31,15 @@ defmodule Companion.Uart.Handler do
     end
   end
 
-  def handle_info({:forward, message}, state) do
-    Logger.info("[#{inspect(__MODULE__)}] [forward] #{inspect(message)}")
+  def handle_info({:forward, payload}, state) do
+    case MqttClient.publish("ivhs/card", JSON.encode!(payload), []) do
+      {:error, _} = error ->
+        Logger.error("[#{inspect(__MODULE__)}] [error] #{inspect(error)}")
+
+      :ok ->
+        Logger.info("[#{inspect(__MODULE__)}] [published] #{inspect(payload)}")
+    end
+
     {:noreply, state}
   end
 

@@ -10,37 +10,35 @@ let
   user = "ivhs-companion";
   releaseName = "companion";
   package = self.packages.${pkgs.system}.default;
+
+  mkOption =
+    type: description: default:
+    lib.mkOption {
+      description = description;
+      type = type;
+      default = default;
+    };
+  mkStrOption = mkOption lib.types.str;
+  mkIntOption = mkOption lib.types.int;
+  mkEnumOption = options: mkOption (lib.types.enum options);
+
 in
 {
   options.services.ivhs-companion = {
     enable = lib.mkEnableOption "Enables IVHS Companion app";
-    releaseCookie = lib.mkOption {
-      type = lib.types.str;
-      description = "Erlang release cookie";
-      default = "ivhscompanion";
-    };
-    loggerLevel = lib.mkOption {
-      type = lib.types.enum [
-        "info"
-        "debug"
-      ];
-      default = "info";
-      description = "Logger level";
-    };
+    releaseCookie = mkStrOption "Erlang release cookie" "ivhscompanion";
+    loggerLevel = mkEnumOption [ "info" "debug" ] "Logger level" "info";
     device = {
-      vendorId = lib.mkOption {
-        type = lib.types.str;
-        description = "Device's vendor id";
-      };
-      productId = lib.mkOption {
-        type = lib.types.str;
-        description = "Device's product id";
-      };
-      baudRate = lib.mkOption {
-        type = lib.types.int;
-        description = "Baud rate of the USB device";
-        default = 115200;
-      };
+      vendorId = mkStrOption "Device's vendor id" "";
+      productId = mkStrOption "Device's product id";
+      baudRate = mkIntOption "Baud rate of the USB device" 115200;
+    };
+    mqtt = {
+      host = mkStrOption "MQTT Broker hostname" "localhost";
+      port = mkIntOption "MQTT Broker port" 1883;
+      clientId = mkStrOption "IVHS Broker client id on MQTT broker" "ivhs-companion";
+      username = mkStrOption "MQTT Broker username" "ivhs";
+      password = mkStrOption "MQTT Broker password" "ivhs";
     };
   };
   config = lib.mkIf cfg.enable {
@@ -73,7 +71,6 @@ in
             export RELEASE_COOKIE="${cfg.releaseCookie}"
             export RELEASE_NODE=ivhs_companion@127.0.0.1
             export RELEASE_DISTRIBUTION=name
-            export LOGGER_LEVEL=${cfg.loggerLevel}
 
             ${body}
           '';
@@ -98,6 +95,14 @@ in
           environment = {
             TTY_DEVICE = "${cfg.device.vendorId}:${cfg.device.productId}";
             TTY_BAUD_RATE = "${toString cfg.device.baudRate}";
+
+            LOGGER_LEVEL = cfg.loggerLevel;
+
+            MQTT_HOST = cfg.mqtt.host;
+            MQTT_PORT = cfg.mqtt.port;
+            MQTT_CLIENT_ID = cfg.mqtt.clientId;
+            MQTT_USERNAME = cfg.mqtt.username;
+            MQTT_PASSWORD = cfg.mqtt.password;
           };
         };
     };

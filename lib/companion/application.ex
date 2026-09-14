@@ -6,7 +6,8 @@ defmodule Companion.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      Companion.Uart
+      Companion.Uart,
+      Companion.Mqtt.Client,
     ]
 
     opts = [strategy: :one_for_one, name: Companion.Supervisor]

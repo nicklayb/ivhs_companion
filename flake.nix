@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
@@ -37,6 +37,7 @@
           shellHook = ''
             export MIX_HOME=$PWD/.nix-mix
             export HEX_HOME=$PWD/.nix-hex
+            export LOGGER_LEVEL=debug
 
             eval "$(direnv hook bash)"
             direnv allow

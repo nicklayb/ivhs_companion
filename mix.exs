@@ -23,7 +23,11 @@ defmodule Companion.MixProject do
     [
       {:circuits_uart, "~> 1.6.0"},
       {:deps_nix, "~> 2.5.0"},
-      {:box, git: "https://github.com/nicklayb/box_ex.git", tag: "0.19.0"}
+      {:box, git: "https://github.com/nicklayb/box_ex.git", tag: "0.19.0"},
+      {:mox, "~> 1.3.0", only: :test},
+      {:ivhs_broker, git: "https://github.com/nicklayb/ivhs_broker.git", runtime: false},
+      {:mqttx, "~> 0.11.0"},
+      {:thousand_island, "~> 1.4"}
     ]
   end
 
