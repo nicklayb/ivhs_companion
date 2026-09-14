@@ -4,6 +4,7 @@ defmodule Companion.Uart.Handler do
   require Logger
 
   alias Companion.Mqtt.Client, as: MqttClient
+  @retry_timer :timer.seconds(5)
 
   def start_link(args) do
     GenServer.start_link(__MODULE__, args)
@@ -26,8 +27,12 @@ defmodule Companion.Uart.Handler do
         {:noreply, new_state}
 
       {:error, error} ->
-        Logger.error("[#{inspect(__MODULE__)}] [#{inspect(adapter)}.init] #{inspect(error)}")
-        {:stop, error, state}
+        Logger.error(
+          "[#{inspect(__MODULE__)}] [#{inspect(adapter)}.init] #{inspect(error)}, retrying in #{@retry_timer}ms"
+        )
+
+        Process.send_after(self(), :open, @retry_timer)
+        {:noreply, state}
     end
   end
 
