@@ -94,12 +94,12 @@ in
 
           environment = {
             TTY_DEVICE = "${cfg.device.vendorId}:${cfg.device.productId}";
-            TTY_BAUD_RATE = "${toString cfg.device.baudRate}";
+            TTY_BAUD_RATE = toString cfg.device.baudRate;
 
             LOGGER_LEVEL = cfg.loggerLevel;
 
             MQTT_HOST = cfg.mqtt.host;
-            MQTT_PORT = cfg.mqtt.port;
+            MQTT_PORT = toString cfg.mqtt.port;
             MQTT_CLIENT_ID = cfg.mqtt.clientId;
             MQTT_USERNAME = cfg.mqtt.username;
             MQTT_PASSWORD = cfg.mqtt.password;
